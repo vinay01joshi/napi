@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
-
+const routes = require('./routes');
 const app = express();
 
 app.use(morgan("dev"));
@@ -16,8 +16,10 @@ app.use(bodyParser.urlencoded({
 app.get('/', (req, res) => {
     res.status(200).send({
         message: "The service is online!",
-        version: '1.0.2',
+        version: '1.0.0',
     });
 });
+
+routes(app);
 
 module.exports = app;
