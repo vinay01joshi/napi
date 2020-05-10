@@ -1,6 +1,5 @@
 const path = require('path');
 const HttpStatus = require("http-status-codes");
-const logger = require(path.resolve('./server/logger'));
 const config = require(path.resolve('config/logentries'));
 var Logger = require('le_node');
 var loggerEntries = new Logger({ token: config.token });
@@ -67,12 +66,7 @@ exports.logError = function (error, req) {
 
     if (process.env.NODE_ENV === 'production') {
         loggerEntries.err(error)
-        return logger.error(error);
+    } else {
+        console.log(error);
     }
-
-    else if (process.env.NODE_ENV === 'production' && process.env.MACHINE === 'heroku') {
-        loggerEntries.err(error)
-    }
-    console.log(error);
-
 };

@@ -8,17 +8,17 @@ const loggerName = `logs-${logStartDate}`;
 
 
 let streams = null;
-//Only for heroku
-if (process.env.NODE_ENV === 'production' && process.env.MACHINE === 'heroku') {
+
+if (process.env.NODE_ENV === 'production') {
+    streams = [{ path: 'logs/' + loggerName + '.log' }];
+
+} else if (process.env.NODE_ENV === 'production' && process.env.MACHINE === 'heroku') {
     streams = [
         { path: 'logs/' + loggerName + '.log' },
         { stream: process.stdout },
     ];
-}
-else if (process.env.NODE_ENV === 'production') {
-    streams = [{ path: 'logs/' + loggerName + '.log' }];
-}
-else {
+    logger.err("error", streams)
+} else {
     streams = [
         { stream: process.stdout }
     ];
