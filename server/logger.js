@@ -8,6 +8,7 @@ const loggerName = `logs-${logStartDate}`;
 
 
 let streams = null;
+//Only for heroku
 if (process.env.NODE_ENV === 'production' && process.env.MACHINE === 'heroku') {
     streams = [
         { path: 'logs/' + loggerName + '.log' },
