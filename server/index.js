@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const routes = require('./routes');
+const errors = require('./errors');
 const app = express();
 
 app.use(morgan("dev"));
@@ -21,5 +22,5 @@ app.get('/', (req, res) => {
 });
 
 routes(app);
-
+errors(app);
 module.exports = app;

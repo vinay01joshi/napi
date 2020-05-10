@@ -1,13 +1,11 @@
 'use strict';
 const path = require('path');
-const mainFile = path.basename(require.main.filename);
 
-//change log date every month
-//clear file using echo "" > log-file-name
-//in the format YYYY-MM
 const now = new Date();
 const logStartDate = `${now.getFullYear()}-${(now.getMonth() + 1)}`;
 const loggerName = `logs-${logStartDate}`;
+
+
 
 let streams = null;
 
